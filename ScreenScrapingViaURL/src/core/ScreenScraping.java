@@ -10,8 +10,8 @@ import org.jsoup.select.Elements;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -36,6 +36,7 @@ public class ScreenScraping {
 		Elements div = doc.select("div#ContentPlaceHolder2_T3120FD4E011_Col00");
 		Elements urls = div.select("div.column");
 		Iterator itrUrls = urls.iterator();
+		driver.close();
 
 		while (itrUrls.hasNext()){
 			if (tE != 1){
@@ -45,9 +46,6 @@ public class ScreenScraping {
 			String url2 = url.attr("abs:href");
 			tE = f.getInfoFlight(url2);
 		}
-		System.out.println("last page");
-		driver.quit();
-		System.out.println("the end");
 	}
 
 	public void info(Elements dept_ret)	{
